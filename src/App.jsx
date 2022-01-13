@@ -3,6 +3,7 @@ import React from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import CityList from "./pages/CityList";
 import Home from "./pages/Home";
+import News from "./pages/Home/News";
 
 import {
   AppOutline,
@@ -45,8 +46,10 @@ export default function App() {
     <div className="App">
       <div className="app-container">
         <Routes>
-          <Route path="/home" element={<Home />}></Route>
-          <Route path="/citylist" element={<CityList />}></Route>
+          <Route path="home" element={<Home />}>
+            <Route path="news" element={<News />} />
+          </Route>
+          <Route path="citylist" element={<CityList />} />
         </Routes>
       </div>
       <TabBar
