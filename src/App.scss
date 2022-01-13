@@ -1,0 +1,12 @@
+.App {
+  height: 100%;
+  .app-container {
+    height: calc(100% - 50px);
+    padding: 10px;
+  }
+  .tab-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+}
