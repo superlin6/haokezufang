@@ -11,6 +11,9 @@
 # production
 /build
 
+#mysql
+/hkzf_v1
+
 # misc
 .DS_Store
 .env.local
