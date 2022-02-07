@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Swiper } from 'antd-mobile';
+import { Swiper, SearchBar, Button } from 'antd-mobile';
+import { SearchOutline } from 'antd-mobile-icons';
 import './index.scss';
-import { getHomeSwiper, getRentGroups } from '../../api/Home/home';
+import {
+  getHomeSwiper,
+  getRecentNews,
+  getRentGroups,
+} from '../../api/Home/home';
 
 export default function Home() {
   const [swiperList, setSwiperList] = useState([]);
@@ -22,6 +27,7 @@ export default function Home() {
     },
   ];
   const [rentGroupList, setRentGroupList] = useState([]);
+  const [newsList, setnewsList] = useState([]);
   async function getSwiper() {
     const { body: swiperList } = await getHomeSwiper();
     setSwiperList(swiperList);
@@ -29,25 +35,53 @@ export default function Home() {
   async function getGroups() {
     const area = 'AREA|88cff55c-aaa4-e2e0';
     const { body: rentGroupList } = await getRentGroups({ area });
-    console.log(rentGroupList);
+    // console.log(rentGroupList);
     setRentGroupList(rentGroupList);
+  }
+  async function getNews() {
+    const area = 'AREA|88cff55c-aaa4-e2e0';
+    const { body: newsList } = await getRecentNews({ area });
+    setnewsList(newsList);
   }
 
   useEffect(() => {
     getSwiper();
     getGroups();
+    getNews();
     console.log('useEffect');
   }, []);
 
   // 渲染轮播图
   function renderSwiper() {
-    return swiperList.map((item) => (
-      <Swiper.Item key={item.id}>
-        <div className="swiper-item">
-          <img src={`http://localhost:8080${item.imgSrc}`} alt="" />
+    return (
+      <Swiper loop autoplay>
+        {swiperList.map((item) => (
+          <Swiper.Item key={item.id}>
+            <div className="swiper-item">
+              <img src={`http://localhost:8080${item.imgSrc}`} alt="" />
+            </div>
+          </Swiper.Item>
+        ))}
+      </Swiper>
+    );
+  }
+  // 渲染搜索框
+  function renderSearchBar() {
+    return (
+      <div className="search-bar">
+        <div className="search">
+          <SearchBar
+            placeholder="请输入内容"
+            style={{ '--background': '#ffffff' }}
+          ></SearchBar>
         </div>
-      </Swiper.Item>
-    ));
+        <Button className="search-btn">
+          <div className="btn-content">
+            <span>搜索</span>
+          </div>
+        </Button>
+      </div>
+    );
   }
   // 渲染导航菜单
   function renderNavBar() {
@@ -86,14 +120,38 @@ export default function Home() {
       </div>
     );
   }
+  // 渲染最新资讯
+  function renderNews() {
+    return (
+      <div className="news">
+        <div className="title">最新资讯</div>
+        <div className="content">
+          {newsList.map((item) => (
+            <div className="news-item" key={item.id}>
+              <div className="left">
+                <img src={`http://localhost:8080${item.imgSrc}`} alt="" />
+              </div>
+              <div className="right">
+                <div className="title">{item.title}</div>
+                <div className="bottom">
+                  <div className="left">{item.from}</div>
+                  <div className="right">{item.date}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="home">
-      <Swiper loop autoplay>
-        {renderSwiper()}
-      </Swiper>
+      {renderSwiper()}
+      {renderSearchBar()}
       {renderNavBar()}
       {renderGroups()}
+      {renderNews()}
       <Outlet />
     </div>
   );

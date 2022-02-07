@@ -14,3 +14,10 @@ export function getRentGroups(params) {
         params
     })
 }
+ 
+export function getRecentNews(params) {
+    return request({
+        url: '/home/news',
+        params
+    })
+}
