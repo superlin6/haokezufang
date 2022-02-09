@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { Swiper, SearchBar, Button } from 'antd-mobile';
-import { SearchOutline } from 'antd-mobile-icons';
 import './index.scss';
 import {
   getHomeSwiper,
@@ -11,6 +10,7 @@ import {
 
 export default function Home() {
   const [swiperList, setSwiperList] = useState([]);
+  const navigate = useNavigate();
   // console.log(swiperList);
   const navList = [
     { id: 1, imgSrc: require('../../assets/img/Home/整租.png'), name: '整租' },
@@ -43,6 +43,9 @@ export default function Home() {
     const { body: newsList } = await getRecentNews({ area });
     setnewsList(newsList);
   }
+  function goToCityList() {
+    navigate('/citylist');
+  }
 
   useEffect(() => {
     getSwiper();
@@ -68,10 +71,10 @@ export default function Home() {
   // 渲染搜索框
   function renderSearchBar() {
     return (
-      <div className="search-bar">
+      <div className="search-bar" onClick={() => goToCityList()}>
         <div className="search">
           <SearchBar
-            placeholder="请输入内容"
+            placeholder="搜索城市"
             style={{ '--background': '#ffffff' }}
           ></SearchBar>
         </div>
