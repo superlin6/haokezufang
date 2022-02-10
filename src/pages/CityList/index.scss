@@ -1,5 +1,30 @@
-.city-list {
+@media screen and (max-width: 900px) {
+  @function vw($px) {
+    @return ($px * 100vw) / 375px;
+  }
+  .city-list {
+      background-color: #fff;
     .top-nav-bar {
-        background-color: #fff;
+    //   background-color: #fff;
     }
+    .wrapper {
+      .list-item {
+        padding: vw(12px);
+        .title {
+          color: grey;
+          font-size: vw(13px);
+        }
+        .content {
+          .city {
+            //   padding:vw(6px);
+              font-size: vw(14px);
+              line-height:vw(40px);
+              &:active {
+                  background-color: #f8f8f8;
+              }
+          }
+        }
+      }
+    }
+  }
 }

@@ -21,12 +21,12 @@
       }
     }
     .search-bar {
-      position:absolute;
+      position: absolute;
       z-index: 2;
       top: vw(20px);
       left: 0;
       right: 0;
-      width:90vw;
+      width: 90vw;
       margin: 0 auto;
       background-color: #fff;
       border-radius: 4px;
@@ -41,7 +41,7 @@
           font-size: 14px;
           color: #888;
         }
-        border:none;
+        border: none;
       }
       .search {
         height: vw(39px);
@@ -120,30 +120,30 @@
     .news {
       background-color: #fff;
       padding: 0 vw(16px) 50px;
-      >.title {
+      > .title {
         font-weight: 600;
         font-size: vw(16px);
         padding: vw(16px) 0 0;
       }
       .content {
         .news-item {
-          padding:vw(12px) 0;
+          padding: vw(12px) 0;
           display: flex;
-          >.left {
+          > .left {
             margin-right: vw(10px);
             img {
               width: vw(120px);
               height: vw(90px);
             }
           }
-          >.right {
+          > .right {
             position: relative;
             width: 100%;
-            .title{
+            .title {
               font-weight: 600;
             }
             .bottom {
-              color:rgb(160, 159, 159);
+              color: rgb(160, 159, 159);
               position: absolute;
               bottom: 0;
               left: 0;

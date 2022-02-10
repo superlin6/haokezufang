@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { NavBar } from 'antd-mobile';
+import React, { Suspense, useEffect, useState } from 'react';
+import { NavBar, SpinLoading } from 'antd-mobile';
 import { useNavigate } from 'react-router-dom';
 import './index.scss';
 import { getCityList, getHotCity } from '../../api/CityList/citylist';
@@ -11,7 +11,7 @@ async function formatCityData(list) {
   const newList = await list;
 
   newList.forEach((city) => {
-    const firstAlbum = city.pinyin.slice(0, 1);
+    const firstAlbum = city.pinyin.slice(0, 1).toUpperCase();
     if (cityList[firstAlbum]) {
       cityList[firstAlbum].push(city);
     } else {
@@ -30,6 +30,7 @@ async function formatCityData(list) {
 }
 
 export default function CityList() {
+  const [loading, setLoading] = useState(true);
   const [cityList, setCityList] = useState([]);
   const [cityIndex, setCityIndex] = useState([]);
   //   console.log(cityList, cityIndex);
@@ -56,27 +57,24 @@ export default function CityList() {
   }
   // 渲染列表
   function renderList() {
-    return (
+   return (
       <div className="wrapper">
-          {
-              cityIndex.map(index => {
+        {cityIndex.map((index) => {
+          return (
+            <div className="list-item" key={index}>
+              <div className="title">{index}</div>
+              <div className="content">
+                {cityList[index].map((city) => {
                   return (
-                    <div className="list-item" key={index}>
-                        <div className="title">{index}</div>
-                        <div className="content">
-                            {
-                                cityList[index].map(city => {
-                                    return (
-                                        <div className="city" key={city.label}>{city.label}</div>
-                                    )
-                                })
-                            }
-                        </div>
+                    <div className="city" key={city.label}>
+                      {city.label}
                     </div>
-                  )
-              })
-          }
-        
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
       </div>
     );
   }
