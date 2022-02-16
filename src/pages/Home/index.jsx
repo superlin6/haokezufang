@@ -61,7 +61,7 @@ export default function Home() {
         {swiperList.map((item) => (
           <Swiper.Item key={item.id}>
             <div className="swiper-item">
-              <img src={`http://localhost:8080${item.imgSrc}`} alt="" />
+              <img src={`http://47.107.99.40:8889${item.imgSrc}`} alt="" />
             </div>
           </Swiper.Item>
         ))}
@@ -115,7 +115,7 @@ export default function Home() {
                 <div className="desc">{item.desc}</div>
               </div>
               <div className="right">
-                <img src={`http://localhost:8080${item.imgSrc}`} alt="" />
+                <img src={`http://47.107.99.40:8889${item.imgSrc}`} alt="" />
               </div>
             </div>
           ))}
@@ -132,7 +132,7 @@ export default function Home() {
           {newsList.map((item) => (
             <div className="news-item" key={item.id}>
               <div className="left">
-                <img src={`http://localhost:8080${item.imgSrc}`} alt="" />
+                <img src={`http://47.107.99.40:8889${item.imgSrc}`} alt="" />
               </div>
               <div className="right">
                 <div className="title">{item.title}</div>
