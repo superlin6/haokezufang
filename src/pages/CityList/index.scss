@@ -3,11 +3,20 @@
     @return ($px * 100vw) / 375px;
   }
   .city-list {
-      background-color: #fff;
+    background-color: #fff;
+    height: 100%;
+    overflow: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
     .top-nav-bar {
-    //   background-color: #fff;
+      background-color: #fff;
+      position: fixed;
+      width: 100%;
     }
     .wrapper {
+      padding-top: 45px;
+      height: 100%;
       .list-item {
         padding: vw(12px);
         .title {
@@ -17,13 +26,43 @@
         .content {
           .city {
             //   padding:vw(6px);
-              font-size: vw(14px);
-              line-height:vw(40px);
-              &:active {
-                  background-color: #f8f8f8;
-              }
+            font-size: vw(14px);
+            line-height: vw(40px);
+            &:active {
+              background-color: #f8f8f8;
+            }
           }
         }
+        &:nth-child(1) {
+          padding-bottom: 0;
+        }
+      }
+    }
+    .city-index {
+      position: fixed;
+      display: flex;
+      flex-direction: column;
+      top: vw(40px);
+      right: vw(5px);
+      z-index: 1;
+      height: 90%;
+      box-sizing: border-box;
+      padding-top: vw(20px);
+      text-align: center;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      .index-item {
+        flex: 1;
+      }
+      .index-active {
+        color: #fff;
+        background-color: #21b97a;
+        border-radius: 100%;
+        font-size: vw(12px);
+        width: vw(15px);
+        height: vw(15px);
+        line-height: vw(15px);
       }
     }
   }

@@ -7,9 +7,11 @@ import {
   getRecentNews,
   getRentGroups,
 } from '../../api/Home/home';
+import { getCurrentCity } from '../../utils';
 
 export default function Home() {
   const [swiperList, setSwiperList] = useState([]);
+  const [curLocal, setCurLocal] = useState('上海');
   const navigate = useNavigate();
   // console.log(swiperList);
   const navList = [
@@ -48,6 +50,7 @@ export default function Home() {
   }
 
   useEffect(() => {
+    setCurLocal(getCurrentCity());
     getSwiper();
     getGroups();
     getNews();
@@ -72,6 +75,7 @@ export default function Home() {
   function renderSearchBar() {
     return (
       <div className="search-bar" onClick={() => goToCityList()}>
+        <div className="left-local">{curLocal}</div>
         <div className="search">
           <SearchBar
             placeholder="搜索城市"

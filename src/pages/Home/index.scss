@@ -21,6 +21,9 @@
       }
     }
     .search-bar {
+      display: flex;
+      align-items: center;
+      color: #888;
       position: absolute;
       z-index: 2;
       top: vw(20px);
@@ -30,6 +33,9 @@
       margin: 0 auto;
       background-color: #fff;
       border-radius: 4px;
+      .left-local {
+        padding: 0 vw(10px);
+      }
       .search-btn {
         position: absolute;
         right: 2px;
